@@ -10,7 +10,11 @@
   4 Physical cores x 2Threads/Core = 8 Logical Cores. A Core cannot work on multiple threads at a time.
 
 A Core with multiple threads is more efficient than a core with a thread. When there is downtime working on a thread (due to resource error for example), the core can switch to another thread and work on it.
-* **Parallen Operations** : Core to Core, all operate at the same time, **Concurrent Operations** : Core to Thread, operate by switching.
+* **Parallel Operations** : Core to Core, all operate at the same time, **Concurrent Operations** : Core to Thread, operate by switching.
+
+* **Data Races** : occur when multiple tasks or threads access a shared resource without sufficient protections, leading to undefined or unpredictable behavior.
+
+* **Mutex** : a lock to prevent data races to happen.
 
 # Key Point
 * **pthread** : to run a function in a seperate thread.
