@@ -17,6 +17,6 @@ A Core with multiple threads is more efficient than a core with a thread. When t
 * **pthread_create** : to start a new thread in calling process.
 * **pthread_join** : to join the execution to the main thread.
 ### References
-[Introduction to Threads](https://www.youtube.com/watch?v=LOfGJcVnvA)
+[Introduction to Threads](https://www.youtube.com/watch?v=ldJ8WGZVXZk)
 
 [CPU Cores VS Threads Explained](https://www.youtube.com/watch?v=hwTYDQ0zZOw) : CPU, Thread explanation for dummies like me.
