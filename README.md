@@ -24,3 +24,5 @@ A Core with multiple threads is more efficient than a core with a thread. When t
 [Introduction to Threads](https://www.youtube.com/watch?v=ldJ8WGZVXZk) : Comparing single thread vs multiple thread with C code.
 
 [CPU Cores VS Threads Explained](https://www.youtube.com/watch?v=hwTYDQ0zZOw) : CPU, Thread explanation for dummies like me.
+
+https://medium.com/@ruinadd/philosophers-42-guide-the-dining-philosophers-problem-893a24bc0fe2
