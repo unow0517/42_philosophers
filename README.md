@@ -14,7 +14,7 @@ A Core with multiple threads is more efficient than a core with a thread. When t
 
 * **Data Races** : occur when multiple tasks or threads access a shared resource without sufficient protections, leading to undefined or unpredictable behavior.
 
-* **Mutex** : a lock to prevent data races to happen.
+* **Mutex** : MUTual EXclusion, a lock to prevent data races to happen.
 
 # Key Point
 * **pthread** : to run a function in a seperate thread.
