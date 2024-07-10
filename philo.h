@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/09 20:41:30 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/10 11:53:39 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,10 @@ typedef struct s_philo
 
 //UTILS.C
 int	ft_atoi(const char *str);
+
+//CHECK_INPUT.C
+//static int	is_int(char *str)
+int is_inpt_ok(int argc, char **argv);
+
+//INIT_STRUCT.C
+void init_struct(t_program *program, int argc, char **argv);
