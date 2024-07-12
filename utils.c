@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:30:38 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/11 20:45:35 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 19:28:27 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,13 @@ int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 {
 	int	i;
 
+	//WHEN IS END_THREADS -1?
 	if (end_threads == -1)
 		end_threads = 0;
-	else
+	else //ANYWAY PRINT THIS OUT
 		printf("Error occured 2\n");
 	printf("Cleaning\n");
+	//JOIN RESULT OF I PHILO THREAD 
 	if (end_threads > 0)
 	{
 		round.terminate = 1;
@@ -71,11 +73,14 @@ int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 		while (++i < end_threads)
 			pthread_join(philo[i].thread, NULL);
 	}
+	//IN WHICH CASE IS END MUTEX -2?
 	if (end_mutex == -2)
 		return (0);
 	i = -1;
+	//END MUTEX TO DESTROY MUTEX PROTECTING FORKS
 	while (++i < end_mutex)
 		pthread_mutex_destroy(&(round.forks[i]));
+	//DESTRORY PRINT_M MUTEX
 	pthread_mutex_destroy(&(round.print_m));
 	free(round.forks);
 	free(philo);

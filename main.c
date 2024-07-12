@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:33:32 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/11 20:44:47 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 19:23:39 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ int main(int argc, char **argv)
 	i = 0;
 	//FOR ALL PHILOS, INIT LAST_EAT, CREATE THREAD AND DO ROUTINE. CLEAN IF ERROR
 	while (i < round.n_philo)
+	{	
 		if ((gettimeofday(&(philo[i].last_eat), NULL) != 0) || ((pthread_create(&(philo[i].thread), NULL, thread_routine, (void *)&(philo[i])) != 0)))
 			return (clean(round.n_philo, philo, round, i));
+		i++;
+	}
+	
 	
 	
 	
