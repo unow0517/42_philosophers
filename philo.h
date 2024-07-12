@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/11 20:45:06 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 20:00:49 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_round
     int             t_die;
     int             t_eat;
     int             t_sleep;
-    int             eat_exit;
+    int             n_must_eat; //OPTIONAL ARGUMENT
     struct timeval  begin;
     int             terminate;
     int             is_error;
@@ -73,3 +73,5 @@ void	        *thread_routine(void *philo);
 //static void	print_str(char str, long stamp, t_philo *philo_s);
 void	        print_log(char str, t_philo *philo_s);
 
+//MONITOR.C
+void	*monitor_death_eat(void *philo);

@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:36:39 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/11 20:50:39 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 20:00:49 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	print_str(char str, long stamp, t_philo *philo_s)
 		printf("%ld %d died\nEND\n", stamp, philo_s->id);
 	else if (str == 'a')
 		printf("%ld Everybody ate %d number of times\nEND\n", \
-		stamp, philo_s->round->eat_exit);
+		stamp, philo_s->round->n_must_eat);
 }
 
 void	print_log(char str, t_philo *philo_s)

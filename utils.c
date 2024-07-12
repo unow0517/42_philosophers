@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:30:38 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/12 19:28:27 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 19:47:43 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	get_timestamp(struct timeval tv_in)
 	return ((int)(get_current_time() - (tv_in.tv_sec * 1000 + tv_in.tv_usec / 1000)));
 }
 
-//
+//DESTROY AND FREE MUTEX IN CASE OF ERROR
 int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 {
 	int	i;
@@ -86,3 +86,5 @@ int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 	free(philo);
 	return (0);
 }
+
+//PTHREAD_CREATE WITH THREAD_ROUTINE ->IF ERROR, WIAT TILL THREAD ENDS WITH PTHREAD_JOIN IN CLEAN

@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:33:32 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/12 19:23:39 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 20:33:48 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	t_round		round;
 	t_philo		*philo;
 	int			i;
+	pthread_t	thread;
 	
 	//CHECK IF THE INPUTS ARE VALID
     if (is_inpt_ok(argc, argv))
@@ -36,10 +37,10 @@ int main(int argc, char **argv)
 			return (clean(round.n_philo, philo, round, i));
 		i++;
 	}
-	
-	
-	
-	
+	//MONITOR IF PHILO HAS DIED OR ATE ENOUGH
+	if (pthread_create(&thread, NULL, monitor_death_eat, (void *)(philo)) != 0)
+		return (clean(round.n_philo, philo, round, round.n_philo));
+
 	return (0);
 }
 

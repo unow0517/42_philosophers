@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:47:58 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/11 09:46:50 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/12 20:00:49 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void init_struct(t_round *round, int argc, char **argv)
     round->t_eat = ft_atoi(argv[3]);
     round->t_sleep = ft_atoi(argv[4]);
     if (argc == 6)
-        round->eat_exit = ft_atoi(argv[5]);
+        round->n_must_eat = ft_atoi(argv[5]);
 	gettimeofday(&(round->begin), NULL);
 	round->forks = malloc(sizeof(pthread_mutex_t) * round->n_philo);
 }
