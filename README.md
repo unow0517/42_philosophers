@@ -19,7 +19,7 @@ A Core with multiple threads is more efficient than a core with a thread. When t
 # Key Point
 * **pthread** : to run a function in a seperate thread.
 * **pthread_create** : to start a new thread in calling process.
-* **pthread_join** : to join the execution to the main thread.
+* **pthread_join** : to join the execution to the main thread. Allows the calling thread to wait for the ending of the target thread.
 ### References
 [Introduction to Threads](https://www.youtube.com/watch?v=ldJ8WGZVXZk) : Comparing single thread vs multiple thread with C code.
 
