@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:36:39 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/12 20:00:49 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/14 18:44:57 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 //EACH FORK IS PROTECTED WITH MUTEX
 static void	*loop_routine(t_philo *philo)
 {
+	printf("entered loop routine\n");
 	//LOCK THE FORK1, OR IS ERROR -1
 	//LOCk= GET THE PERMISSION TO THE CRITICAL SECTION
 	if (pthread_mutex_lock(&(philo->round->forks[philo->fork1])) != 0)
-		return (philo->round->is_error = -1, NULL);
+		return (philo->round->is_error = 1, NULL);
 	//PRINT FORK IS TAKEN BY ID
+	printf("right before printlog in looproutine f\n");
 	print_log('f', philo);
 	//IF PHILO IS 1, UNLOCK THE MUTEX FORK
 	if (philo->round->n_philo == 1)
@@ -28,7 +30,7 @@ static void	*loop_routine(t_philo *philo)
 	if (pthread_mutex_lock(&(philo->round->forks[philo->fork2])) != 0)
 	{
 		pthread_mutex_unlock(&(philo->round->forks[philo->fork1]));
-		return (philo->round->is_error = -2, NULL);
+		return (philo->round->is_error = 2, NULL);
 	}
 	//PRINT FORK2 IS TAKEN
 	print_log('e', philo);
@@ -38,7 +40,7 @@ static void	*loop_routine(t_philo *philo)
 		//NOW UNLOCK FORK1 AND FORK2
 		pthread_mutex_unlock(&(philo->round->forks[philo->fork2]));
 		pthread_mutex_unlock(&(philo->round->forks[philo->fork1]));
-		return (philo->round->is_error = -3, NULL);
+		return (philo->round->is_error = 3, NULL);
 	}
 	//USLEEP FOR TIME TO EAT
 	ft_usleep(philo->round->t_eat);
@@ -60,8 +62,16 @@ void	*thread_routine(void *philo)
 	t_philo	*philo_s;
 
 	philo_s = (t_philo *)philo;
+	
+	// printf("thread_routine ID %d\n", philo_s->id);
+	// printf("thread_routine STATE %d\n", philo_s->state);
+	// printf("terminate %d\n", philo_s->round->terminate);
+	// printf("is_error %d\n", philo_s->round->is_error);
 	philo_s->fork1 = philo_s->id + (philo_s->id % 2 == 1);
 	philo_s->fork2 = philo_s->id + (philo_s->id % 2 == 0);
+	// printf("fork1 %d\n", philo_s->fork1);
+	// printf("fork2 %d\n", philo_s->fork2);
+
 	//IF LAST PHILO
 	if (philo_s->id == philo_s->round->n_philo - 1)
 	{
@@ -71,9 +81,14 @@ void	*thread_routine(void *philo)
 		else if (philo_s->fork2 == philo_s->round->n_philo)
 			philo_s->fork2 = 0;
 	}
+	// printf("hello\n");
+	// printf("n_philo %d\n", philo_s->round->n_philo);
+
 	//IF NO TERMINATE OR ERROR, RUN LOOP ROUTINE
 	while (!philo_s->round->terminate && !philo_s->round->is_error)
 	{
+		// printf("one step before loop_routine \n");
+
 		loop_routine(philo_s);
 		//IF ONLY ONE PHILO, BREAK;
 		if (philo_s->round->n_philo == 1)
@@ -106,17 +121,21 @@ void	print_log(char str, t_philo *philo_s)
 	int			stamp;
 
 	//LOCK MUTEX TO PROTECT THIS FUNCTION, OR -4
+	printf("heyyy\n");
+	// printf("mutexlock %d\n", pthread_mutex_lock(&(philo_s->round->print_m)));
+	printf("heyyaaaa\n");
 	if (pthread_mutex_lock(&(philo_s->round->print_m)) != 0)
 	{
-		philo_s->round->is_error = -4;
+		philo_s->round->is_error = 4;
 		return ;
 	}
 	//GET THE CURRENT TIME
 	stamp = get_timestamp(philo_s->round->current);
+	printf("STAMP %d\n", stamp);
 	//GET_TIMESTAMP DOESN'T RETURN -1 THO?
 	if (stamp == -1)
 	{
-		philo_s->round->is_error = -5;
+		philo_s->round->is_error = 5;
 		pthread_mutex_unlock(&(philo_s->round->print_m));
 		return ;
 	}
@@ -125,8 +144,11 @@ void	print_log(char str, t_philo *philo_s)
 		pthread_mutex_unlock(&(philo_s->round->print_m));
 		return ;
 	}
+	printf("right before print str\n");
+	
 	print_str(str, stamp, philo_s);
 	//IF STR IS A(ALL) OR D(DIE), UNLOCK MUTEX AND RETURN
+	printf("terminate changed in print_log\n");
 	terminate = (str == 'a') || (str == 'd');
 	if (pthread_mutex_unlock(&(philo_s->round->print_m)) != 0)
 		philo_s->round->is_error = 6;

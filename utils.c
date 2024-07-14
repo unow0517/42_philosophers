@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:30:38 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/12 19:47:43 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/14 18:46:31 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ size_t	get_current_time(void)
 //RETURN CURRENT TIME IN MILISECOND
 int	get_timestamp(struct timeval tv_in)
 {
+	printf("current time %d\n ", (int)get_current_time());
 	return ((int)(get_current_time() - (tv_in.tv_sec * 1000 + tv_in.tv_usec / 1000)));
 }
 
@@ -68,6 +69,8 @@ int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 	//JOIN RESULT OF I PHILO THREAD 
 	if (end_threads > 0)
 	{
+	printf("terminate to 1 in clean\n");
+
 		round.terminate = 1;
 		i = -1;
 		while (++i < end_threads)
@@ -88,3 +91,13 @@ int	clean(int end_mutex, t_philo *philo, t_round round, int end_threads)
 }
 
 //PTHREAD_CREATE WITH THREAD_ROUTINE ->IF ERROR, WIAT TILL THREAD ENDS WITH PTHREAD_JOIN IN CLEAN
+
+int	ft_usleep(size_t milliseconds)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < milliseconds)
+		usleep(50);
+	return (0);
+}

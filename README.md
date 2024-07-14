@@ -20,6 +20,9 @@ A Core with multiple threads is more efficient than a core with a thread. When t
 * **pthread** : to run a function in a seperate thread.
 * **pthread_create** : to start a new thread in calling process.
 * **pthread_join** : to join the execution to the main thread. Allows the calling thread to wait for the ending of the target thread.
+* **Dot Operator (.) in Struct** : The dot operator is used to access members of a structure directly. When you have a structure variable, you use the dot operator to access its members.
+* **Arrow Operator (->) in Struct** : The arrow operator is used to access members of a structure through a pointer. When you have a pointer to a structure, you use the arrow operator to access its members.
+
 ### References
 [Introduction to Threads](https://www.youtube.com/watch?v=ldJ8WGZVXZk) : Comparing single thread vs multiple thread with C code.
 

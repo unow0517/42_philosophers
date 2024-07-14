@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 19:51:37 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/12 20:16:20 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/14 18:20:55 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*monitor_death_eat(void *philo)
 	is_dead = 0;
 	philo_s = (t_philo *)philo;
     //
+	// printf("is_error in monitor %d\n", philo_s[0].round->is_error);
+
 	while (!ate_enough && !is_dead && !philo_s[0].round->is_error)
 	{
 		i = -1;
@@ -42,6 +44,11 @@ void	*monitor_death_eat(void *philo)
 	if (is_dead > 0 || ate_enough)
 		print_log('a' + 3 * (is_dead > 0), &philo_s[--i]);
 	philo_s[0].round->terminate = 1;
+	// printf("terminate to 1 in monitor\n");
+	// printf("is_error in monitor before %d\n", philo[0].round->is_error);
 	philo_s[0].round->is_error += is_dead == -1;
+	// printf("is_error in monitor after %d\n", philo[0].round->is_error);
+
+	
 	return (NULL);
 }
