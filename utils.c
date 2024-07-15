@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:30:38 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/14 18:46:31 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:08:03 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ size_t	get_current_time(void)
 }
 
 //RETURN CURRENT TIME IN MILISECOND
-int	get_timestamp(struct timeval tv_in)
+int	get_timestamp(struct timeval current)
 {
-	printf("current time %d\n ", (int)get_current_time());
-	return ((int)(get_current_time() - (tv_in.tv_sec * 1000 + tv_in.tv_usec / 1000)));
+	// printf("current time %d\n ", (int)get_current_time());
+	// printf("sec %ld, usec %ld\n ", current.tv_sec * 1000, current.tv_usec / 1000);
+	return ((int)(get_current_time() - (current.tv_sec * 1000 + current.tv_usec / 1000)));
 }
 
 //DESTROY AND FREE MUTEX IN CASE OF ERROR

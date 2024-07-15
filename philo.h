@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/14 18:15:51 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:29:40 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_round
     int             t_die;
     int             t_eat;
     int             t_sleep;
-    int             n_must_eat; //OPTIONAL ARGUMENT
+    int             n_must_eat; //OPTIONAL ARGUMENT, -1 if not given
     struct timeval  begin;
     int             terminate;
     int             is_error;

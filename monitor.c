@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 19:51:37 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/14 18:20:55 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:26:35 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	*monitor_death_eat(void *philo)
 			is_dead += get_timestamp(philo_s[i++].last_eat) > philo_s[0].round->t_die;
 	}
     //PRINT_LOG A IF IS EATEN IS NOT 0, OR PRINT_LOG D(PHILO DIED)
+	printf("is dead %d\n", is_dead);
+	printf("ate_enough %d\n", ate_enough);
 	if (is_dead > 0 || ate_enough)
 		print_log('a' + 3 * (is_dead > 0), &philo_s[--i]);
 	philo_s[0].round->terminate = 1;

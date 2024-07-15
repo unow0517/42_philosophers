@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:36:39 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/14 18:44:57 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:30:17 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 //EACH FORK IS PROTECTED WITH MUTEX
 static void	*loop_routine(t_philo *philo)
 {
-	printf("entered loop routine\n");
+	// printf("entered loop routine\n");
 	//LOCK THE FORK1, OR IS ERROR -1
 	//LOCk= GET THE PERMISSION TO THE CRITICAL SECTION
 	if (pthread_mutex_lock(&(philo->round->forks[philo->fork1])) != 0)
 		return (philo->round->is_error = 1, NULL);
 	//PRINT FORK IS TAKEN BY ID
-	printf("right before printlog in looproutine f\n");
+	// printf("right before printlog in looproutine f\n");
 	print_log('f', philo);
 	//IF PHILO IS 1, UNLOCK THE MUTEX FORK
 	if (philo->round->n_philo == 1)
@@ -43,14 +43,23 @@ static void	*loop_routine(t_philo *philo)
 		return (philo->round->is_error = 3, NULL);
 	}
 	//USLEEP FOR TIME TO EAT
+	// printf("t_eat %d\n", philo->round->t_eat);
 	ft_usleep(philo->round->t_eat);
+	// printf("now print s\n");
 	//EATING DONE, UNLOCK THE FORKS
+	// printf("fork2 %d\n", philo->fork2);
 	pthread_mutex_unlock(&(philo->round->forks[philo->fork2]));
 	pthread_mutex_unlock(&(philo->round->forks[philo->fork1]));
+	// printf("now print after unlock s\n");
+
 	//INCREASING COUNT EAT
+	// printf("cnt eat %d\n", philo->cnt_eat);
 	philo->cnt_eat++;
+	// printf("cnt eat after %d\n", philo->cnt_eat);
+
 	//THEN GO SLEEP FOR T_SLEEP
 	print_log('s', philo);
+	// printf("printlogs\n");
 	ft_usleep(philo->round->t_sleep);
 	print_log('t', philo);
 	return (NULL);
@@ -121,9 +130,9 @@ void	print_log(char str, t_philo *philo_s)
 	int			stamp;
 
 	//LOCK MUTEX TO PROTECT THIS FUNCTION, OR -4
-	printf("heyyy\n");
+	// printf("heyyy\n");
 	// printf("mutexlock %d\n", pthread_mutex_lock(&(philo_s->round->print_m)));
-	printf("heyyaaaa\n");
+	// printf("heyyaaaa\n");
 	if (pthread_mutex_lock(&(philo_s->round->print_m)) != 0)
 	{
 		philo_s->round->is_error = 4;
@@ -131,7 +140,7 @@ void	print_log(char str, t_philo *philo_s)
 	}
 	//GET THE CURRENT TIME
 	stamp = get_timestamp(philo_s->round->current);
-	printf("STAMP %d\n", stamp);
+	// printf("STAMP %d\n", stamp);
 	//GET_TIMESTAMP DOESN'T RETURN -1 THO?
 	if (stamp == -1)
 	{
@@ -144,11 +153,14 @@ void	print_log(char str, t_philo *philo_s)
 		pthread_mutex_unlock(&(philo_s->round->print_m));
 		return ;
 	}
-	printf("right before print str\n");
+	// printf("right before print str\n");
 	
+	// printf("str %c\n", str);
+	// printf("stamp %d\n", stamp);
+
 	print_str(str, stamp, philo_s);
 	//IF STR IS A(ALL) OR D(DIE), UNLOCK MUTEX AND RETURN
-	printf("terminate changed in print_log\n");
+	// printf("terminate changed in print_log\n");
 	terminate = (str == 'a') || (str == 'd');
 	if (pthread_mutex_unlock(&(philo_s->round->print_m)) != 0)
 		philo_s->round->is_error = 6;

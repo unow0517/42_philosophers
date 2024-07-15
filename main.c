@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:33:32 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/14 18:19:21 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/15 20:09:44 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main(int argc, char **argv)
 		// printf("main %dth is_error %d\n", i, (philo)[i].round->is_error);
 		if ((gettimeofday(&(philo[i].last_eat), NULL) != 0) || ((pthread_create(&(philo[i].thread), NULL, thread_routine, (void *)&(philo[i])) != 0)))
 			return (clean(round.n_philo, philo, round, i));
+		// printf("i: %d\n", i);
 		i++;
 	}
 	//MONITOR IF PHILO HAS DIED OR ATE ENOUGH
