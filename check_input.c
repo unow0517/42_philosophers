@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:46:17 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/10 12:14:04 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/22 18:38:21 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,31 @@ static int	is_int(char *str)
 	return (1);
 }
 
-int is_inpt_ok(int argc, char **argv)
+int	is_inpt_ok(int argc, char **argv)
 {
-    int i;
-    int cnt_wrong;
-    
-    if (argc != 5 && argc != 6)
+	int	i;
+	int	cnt_wrong;
+
+	if (argc != 5 && argc != 6)
 	{
 		write(1, "Wrong Number of Inputs\n", 23);
 		return (0);
 	}
-    i = 1;
-    cnt_wrong = 0;
-    while (i < 5)
-    {
-        if (!is_int(argv[i]))
-            cnt_wrong++;           
-        i++;
-    }
-	if (argc == 6)
-        if (!is_int(argv[5]))
+	i = 1;
+	cnt_wrong = 0;
+	while (i < 5)
+	{
+		if (!is_int(argv[i]))
 			cnt_wrong++;
-    if (cnt_wrong)
-    {   
+		i++;
+	}
+	if (argc == 6)
+		if (!is_int(argv[5]))
+			cnt_wrong++;
+	if (cnt_wrong)
+	{
 		write(1, "Wrong Type of Inputs\n", 22);
-		return (0);    
-    }
+		return (0);
+	}
 	return (1);
 }
