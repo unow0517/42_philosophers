@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:46:17 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/22 18:38:21 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/22 19:19:12 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ int	is_inpt_ok(int argc, char **argv)
 		return (0);
 	}
 	return (1);
+}
+
+void	init_all(t_round *round, t_philo *philo, int argc, char **argv)
+{
+	if (round)
+	{
+		
+		// init_struct(&round, argc, argv);
+		init_struct(round, argc, argv);
+		// philo = (t_philo *)malloc(sizeof(t_philo) * round.n_philo);
+		philo = (t_philo *)malloc(sizeof(t_philo) * round->n_philo);
+		init_philos(&philo, round);
+	}
 }

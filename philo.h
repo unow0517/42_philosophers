@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/15 20:29:40 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/22 19:35:23 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_philo
 //CHECK_INPUT.C
 //static        int	is_int(char *str)
 int             is_inpt_ok(int argc, char **argv);
+void            init_all(t_round *round, t_philo *philo, int argc, char **argv);
 
 //INITS.C
 void            init_struct(t_round *round, int argc, char **argv);
@@ -72,6 +73,7 @@ void	*monitor_death_eat(void *philo);
 void	        *thread_routine(void *philo);
 //static void	print_str(char str, long stamp, t_philo *philo_s);
 void	        print_log(char str, t_philo *philo_s);
+int             init_philo(t_philo *philo, int i);
 
 //UTILS.C
 int	            ft_atoi(const char *str);

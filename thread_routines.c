@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:36:39 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/15 20:30:17 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/22 19:35:13 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,4 +164,15 @@ void	print_log(char str, t_philo *philo_s)
 	terminate = (str == 'a') || (str == 'd');
 	if (pthread_mutex_unlock(&(philo_s->round->print_m)) != 0)
 		philo_s->round->is_error = 6;
+}
+
+int init_philo(t_philo *philo, int i)
+{
+	if ((gettimeofday(&(philo[i].last_eat), NULL) != 0) || \
+		((pthread_create(&(philo[i].thread), NULL, thread_routine, \
+		(void *)&(philo[i])) != 0)))
+		return (1);
+	else
+		return (0);
+	
 }
