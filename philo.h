@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/22 19:35:23 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/22 19:46:19 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,14 @@ int main(int argc, char **argv);
 //MONITOR.C
 void	*monitor_death_eat(void *philo);
 
+//PRINTS.C
+void            print_str(char str, long stamp, t_philo *philo_s);
+void	        print_log(char str, t_philo *philo_s);
+
 //THREAD_ROUTINES.C
 //static void   *loop_routine(t_philo *philo);
 void	        *thread_routine(void *philo);
-//static void	print_str(char str, long stamp, t_philo *philo_s);
-void	        print_log(char str, t_philo *philo_s);
+
 int             init_philo(t_philo *philo, int i);
 
 //UTILS.C

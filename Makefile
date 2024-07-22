@@ -6,13 +6,13 @@
 #    By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/09 20:32:15 by yowoo             #+#    #+#              #
-#    Updated: 2024/07/13 21:59:23 by yowoo            ###   ########.fr        #
+#    Updated: 2024/07/22 19:47:13 by yowoo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c utils.c check_input.c inits.c thread_routines.c  monitor.c
+SRCS = main.c utils.c check_input.c inits.c thread_routines.c  monitor.c prints.c
 
 OBJS = $(SRCS:.c=.o)
 
