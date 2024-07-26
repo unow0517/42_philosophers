@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:33:32 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/26 20:39:41 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/26 21:24:22 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 	pthread_t	thread;
 
 	philo = 0;
-	if (is_inpt_ok(argc, argv))
+	if (is_inpt_ok(argc, argv) && *argv[1] != '0')
 	{
 		init_struct(&round, argc, argv);
 		philo = (t_philo *)malloc(sizeof(t_philo) * round.n_philo);
