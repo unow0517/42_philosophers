@@ -6,7 +6,7 @@
 /*   By: yowoo <yowoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:41:27 by yowoo             #+#    #+#             */
-/*   Updated: 2024/07/22 19:56:12 by yowoo            ###   ########.fr       */
+/*   Updated: 2024/07/26 20:39:51 by yowoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ typedef struct s_round
 	int					t_die;
 	int					t_eat;
 	int					t_sleep;
-	int					n_must_eat; //OPTIONAL ARGUMENT, -1 if not given
+	int					n_must_eat;
 	struct timeval		begin;
 	int					terminate;
 	int					is_error;
-	pthread_mutex_t		print_m; //TO PROTECT PRINT_STR
+	pthread_mutex_t		print_m;
 	pthread_mutex_t		*forks;
 	struct timeval		current;
 }	t_round;
